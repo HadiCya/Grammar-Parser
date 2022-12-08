@@ -1,0 +1,42 @@
+<div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <div class="home-container">
+      <div class="home-container1">
+        <div class="home-container2">
+          <div class="home-container3">
+            <div class="home-container4">
+              <span class="home-text">How to Use:</span>
+              <span class="home-text1">
+                Enter a complete sentence into the box below. The nouns and verbs
+                in the sentence will be parsed, with the nouns and verbs
+                displayed, with other parts of speech discarded after parsing.
+              </span>
+            </div>
+            <form action="/" method = "post">
+              <textarea class="home-textarea textarea" id="userCase" name="userCase">{{ refill }}</textarea>
+              <input type="submit" id='script' name="submit" value="Submit" class="home-button button">
+             </form>
+        </div>
+        </div>
+        <div class="home-container5">
+          <div class="home-container6">
+            <span class="home-text2">Nouns</span>
+            <ul class="home-ul list">
+                {% for noun in nouns %}
+                    <li class="home-li1 list-item"><span>{{ noun }}</span></li>
+                {% endfor %}
+            </ul>
+          </div>
+          <div class="home-container7">
+            <span class="home-text4">Verbs</span>
+            <ul class="home-ul1 list">
+                {% for verb in verbs %}
+                    <li class="home-li1 list-item"><span>{{ verb }}</span></li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
