@@ -1,6 +1,43 @@
 <div>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  <head>
+		<meta charset="utf-8">
+		<title>{{ title }}</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='jquery.highlight-within-textarea.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src="{{url_for('static', filename='jquery.highlight-within-textarea.js')}}"></script>
+		<style>
+			.hwt-container {
+				background-color: #f8f9fa;
+			}
+
+			.hwt-input:focus {
+				outline-color: #495057;
+			}
+
+			.hwt-content mark {
+				border-radius: 3px;
+				background-color: #d0bfff;
+			}
+
+			.hwt-content mark.red {
+				background-color: #ffc9c9;
+			}
+
+			.hwt-content mark.blue {
+				background-color: #a3daff;
+			}
+
+			.hwt-content mark.yellow {
+				background-color: #ffec99;
+			}
+		</style>
+
+		<!-- general styles to make this page look decent -->
+	</head>
     <div class="home-container">
+		<h1 class="home-title"> {{ title }} </h1>
       <div class="home-container1">
         <div class="home-container2">
           <div class="home-container3">
@@ -13,7 +50,12 @@
               </span>
             </div>
             <form action="/" method = "post">
-              <textarea class="home-textarea textarea" id="userCase" name="userCase">{{ refill }}</textarea>
+              <textarea class="home-textarea" id="userCase" name="userCase">{{ refill }}</textarea>
+              <script>
+$('.home-textarea').highlightWithinTextarea({
+    highlight: [{% for noun in nouns %}"{{ noun }}",{% endfor %}{% for verb in verbs %}"{{ verb }}",{% endfor %}]
+});
+              </script>
               <input type="submit" id='script' name="submit" value="Submit" class="home-button button">
              </form>
         </div>

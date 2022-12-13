@@ -1,5 +1,5 @@
 from flask import *
-from GrammarParser import *
+from app.GrammarParser import *
 
 
 app = Flask(__name__)
@@ -9,9 +9,16 @@ def index():
     nouns = []
     verbs = []
     refill = ""
+    nothing = ""
     if request.method == "POST":
         refill = request.form['userCase']
-        nouns, verbs = parse(refill)
-    return render_template('index.html', title='Welcome', nouns=nouns, verbs=verbs, refill=refill)
+        if refill != "":
+            nouns, verbs = parse(refill)
+            nothing = ""
+        else:
+            nothing = "Nothing was entered."
 
-app.run(host='0.0.0.0', port=81)
+    return render_template('index.html', title='Grammatical Parser', refill=refill, nouns=nouns, verbs=verbs, nothing=nothing)
+
+if __name__ == '__main__':
+    app.run()
